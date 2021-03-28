@@ -18,14 +18,13 @@ export class RawIngredient extends AbstractIngredient implements JavaSerializabl
     if (this.rawBytesString) {
       const characters = this.rawBytesString.split("");
 
-      // TODO: This doesn't seem to be correct yet either.
       for (let i = 0; i < characters.length; ++i) {
         let c = characters[i].charCodeAt(0);
         if ((i % 2) === 0) {
           if (i > 6) {
-            c -= 24; // TODO
+            c -= 24;
           } else {
-            c -= 23; // TODO
+            c -= 23;
           }
         } else if (i > 8) {
           c -= 32;

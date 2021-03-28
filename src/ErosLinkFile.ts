@@ -4,7 +4,6 @@ import { Routine } from "./Routine";
 import { Preset } from "./Preset";
 
 // com.erostek.eroslink.ErosLinkHelper.loadSerial
-// TODO: This doesn't seem to be correct yet, but it isn't really important.
 function loadSerial(reader: SerializeReadHelper): string | null {
   const str1 = reader.readStringObject();
   const str2 = reader.readStringObject();
@@ -18,9 +17,9 @@ function loadSerial(reader: SerializeReadHelper): string | null {
     let c = characters[i].charCodeAt(0);
     if ((i % 2) === 0) {
       if (i > 3) {
-        c -= 24; // TODO
+        c -= 24;
       } else {
-        c -= 23; // TODO
+        c -= 23;
       }
     } else if (i > 4) {
       c -= 32;
