@@ -1,0 +1,31 @@
+{
+  "name": "eroslink-file",
+  "version": "0.1.0",
+  "description": "ErosLink routine file parser",
+  "repository": "github:fenbyfluid/eroslink-file",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "prepare": "tsc"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0",
+    "java-object-serialization": "^0.1.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "rootDir": "src"
+  }
+}
