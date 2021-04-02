@@ -1,11 +1,11 @@
 import { JavaSerializable, ObjectInputStream } from "java-object-serialization";
-import { AbstractIngredient } from "./AbstractIngredient";
 import { SerializeReadHelper } from "./SerializeReadHelper";
+import { Ingredient } from "./index";
 
 export class Routine implements JavaSerializable {
   name: string | null = null;
   description: string | null = null;
-  ingredients: AbstractIngredient[] = [];
+  ingredients: Ingredient[] = [];
 
   readObject(stream: ObjectInputStream) {
     const reader = new SerializeReadHelper(stream);

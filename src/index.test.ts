@@ -1,4 +1,4 @@
-import { DesignerFile } from "./index";
+import { AbstractIngredient, ChannelIngredient, DesignerFile, Routine } from "./index";
 
 function bigintReplacer(key: string, value: any): any {
   return (typeof value === "bigint") ? value.toString() : value;
@@ -10,6 +10,27 @@ test("deserialize eroslink routine", () => {
 
   const context = new DesignerFile(serialized);
   // console.log(JSON.stringify(context, bigintReplacer, 2));
+
+  expect(context.serial).toBe("7a7a9bf-234be-54b8-127e");
+  expect(context.routines.length).toBe(3);
+
+  const routine = context.routines[0];
+  expect(routine).toBeInstanceOf(Routine);
+  expect(routine.name).toBe("Continuous");
+  expect(routine.ingredients.length).toBe(3);
+
+  const ingredient = routine.ingredients[0];
+  expect(ingredient).toBeInstanceOf(AbstractIngredient);
+  expect(ingredient).toBeInstanceOf(ChannelIngredient);
+  expect(ingredient.instanceName).toBe("1");
+
+  if ("channel" in ingredient) {
+    expect(ingredient.channel).toBe("BOTH");
+  }
+
+  if (ingredient instanceof ChannelIngredient) {
+    expect(ingredient.channel).toBe("BOTH");
+  }
 });
 
 const ROUTINE_PATH = __dirname + "/../routines";
