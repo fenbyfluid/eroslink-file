@@ -5,6 +5,24 @@ import { SerializeReadHelper } from "./SerializeReadHelper";
 export class RawIngredient extends AbstractIngredient implements JavaSerializable {
   rawBytesString: string | null = null;
 
+  public toArray(): (number | string)[] | null {
+    if (this.rawBytesString === null) {
+      return null;
+    }
+
+    return this.rawBytesString
+      .trim()
+      .replace(/[\t\n\r]/g, " ")
+      .split(" ")
+      .map(chunk => {
+        if (chunk.charAt(0) === "*") {
+          return chunk.substr(1);
+        } else {
+          return Number.parseInt(chunk, 16);
+        }
+      });
+  }
+
   readObject(stream: ObjectInputStream) {
     const reader = new SerializeReadHelper(stream);
 
@@ -15,7 +33,7 @@ export class RawIngredient extends AbstractIngredient implements JavaSerializabl
 
     this.rawBytesString = reader.readStringObject();
 
-    if (this.rawBytesString) {
+    if (this.rawBytesString !== null) {
       const characters = this.rawBytesString.split("");
 
       for (let i = 0; i < characters.length; ++i) {
