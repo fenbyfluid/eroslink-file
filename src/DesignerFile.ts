@@ -34,7 +34,7 @@ function loadSerial(reader: SerializeReadHelper): string | null {
 }
 
 // com.erostek.eroslink.Context
-export class ErosLinkFile {
+export class DesignerFile {
   serial: string | null;
   boxInfo: { internalRev: number, majorVersion: number, minorVersion: number, model: number } | null;
   date: string | null;

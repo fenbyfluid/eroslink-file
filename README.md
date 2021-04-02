@@ -3,10 +3,10 @@
 ## Example
 
 ```typescript
-import { ErosLinkFile } from "eroslink-file";
+import { DesignerFile } from "eroslink-file";
 
 const data = fs.readFileSync("path/to/routine.elk");
-const context = new ErosLinkFile(data);
+const context = new DesignerFile(data);
 
 for (const routine of context.routines) {
   console.log(`Routine "${routine.name}" has ${routine.ingredients.length} ingredients`);
