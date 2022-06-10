@@ -35,6 +35,14 @@ test("deserialize eroslink routine", () => {
 
 const ROUTINE_PATH = __dirname + "/../routines";
 
+function isErrnoException(error: unknown): error is NodeJS.ErrnoException {
+  if (error === null || !(typeof error === 'object')) {
+    return false;
+  }
+
+  return error.hasOwnProperty('errno');
+}
+
 try {
   const fs = require("fs");
 
@@ -70,7 +78,7 @@ try {
   });
   */
 } catch (e) {
-  if (e.code === "ENOENT") {
+  if (isErrnoException(e) && e.code === "ENOENT") {
     console.log("routine tests wont run as no routine files found");
   } else {
     throw e;
