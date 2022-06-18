@@ -13,12 +13,12 @@ export class RawIngredient extends AbstractIngredient implements JavaSerializabl
     return this.rawBytesString
       .trim()
       .replace(/[\t\n\r]/g, " ")
-      .split(" ")
+      .split(/ +/)
       .map(chunk => {
         if (chunk.charAt(0) === "*") {
-          return chunk.substr(1);
+          return chunk.substring(1);
         } else {
-          return Number.parseInt(chunk, 16);
+          return Number.parseInt(chunk);
         }
       });
   }
